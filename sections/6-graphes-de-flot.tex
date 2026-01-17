@@ -257,6 +257,28 @@
   }
 \end{frame}
 
+% À l'oral, on pourra dire que la coupe sur la slide au dessus est de capacité 23 = flot max
+\begin{frame}{Théorème Max-flow Min-cut}
+    \begin{block}{Coupe $s-t$}
+        Partition des n\oe{}uds du graphe $V$ en $S$ et $T=V\setminus S$ telle que $s\in S$ et $t \in T$.
+        \medskip
+
+        Sa capacité est donnée par :
+        \[
+            c(S,T) = \sum_{(u,v)\in S\times T} c(u,v)
+        \]
+    \end{block}
+
+    \begin{block}{Théorème Max-flow Min-cut}
+        Les trois propositions sont équivalentes :
+        \begin{enumerate}
+            \item Le flot $\varphi$ entre $s$ et $t$ est maximal ;
+            \item Il n'existe aucun chemin augmentant ;
+            \item Il existe une coupe $s-t$ dont la capacité est égale à $\varphi$.
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
 \begin{frame}{Modélisation de problèmes par un graphe de flot}
     Les problèmes d'affectation ou de répartition de ressources peuvent très souvent être modélisés par des graphes de flots avec une composante bipartie.
 

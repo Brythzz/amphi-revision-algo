@@ -1,5 +1,58 @@
-% Algorithmes gloutons (def, exemples)
-%       -> peut être optimal (e.g Kruskal) mais l'est pas forcément
+% À l'oral : dire pourquoi on peut vouloir utiliser des algorithmes gloutons
 
-% Exemple d'algo d'approx non glouton
-% Définition de alpha-approx (nouveauté !)
+\begin{frame}{Points non traités}
+    Je fais le choix de ne pas parler des approximations du Problème du Voyageur de Commerce parce qu'elles ont été traitées au TD Pratique 3.
+\end{frame}
+
+\begin{frame}{Algorithmes gloutons}
+    \begin{block}{Algorithme glouton}
+        Algorithme qui fait des choix localement optimaux pour construire une solution.
+    \end{block}
+
+    \begin{exampleblock}{Exemple : Kruskal}
+        L'algorithme de Kruskal est un algorithme glouton : à chaque étape, il considère l'arête de \textbf{poids minimal} parmi celles restantes et ne créant pas de cycle.
+        \medskip
+
+        En l'occurrence, Kruskal est un algorithme optimal mais ce n'est pas toujours le cas !
+    \end{exampleblock}
+    \medskip
+
+    Dans le cas général, on va donc chercher à borner le coût de la solution renvoyée par un algorithme pour garantir sa qualité.
+
+\end{frame}
+
+\begin{frame}{Ce qui est nouveau dans ce chapitre}
+    \begin{block}{\newtext{$\alpha$-approximation}}
+        Soit un problème d'optimisation, dont $f$ est la fonction de coût.
+        \medskip
+
+        On dit qu'un algorithme est une $\alpha$-approximation ($\alpha \geq 1$) pour ce problème si, pour toute entrée $e$, en notant $S$ la solution renvoyée par l'algorithme pour $e$ et $S^*$ une solution optimale :
+        \[
+            max\left(\frac{f(S)}{f(S^*)},\frac{f(S^*)}{f(S)}\right) \leq \alpha
+        \]
+    \end{block}
+    \medskip
+
+    \textbf{Minimisation} : $f(S)\leq \alpha f(S^*)$
+    \smallskip
+
+    \textbf{Maximisation} : $f(S) \geq \frac{1}{\alpha}f(S^*)$
+    \medskip
+
+    En pratique, on a souvent des solutions plus proches de l'optimale que de la borne.
+\end{frame}
+
+% Points importants pour l'examen
+\begin{frame}{Conclusion de la section 4}
+    Choses à savoir faire pour l'examen :
+    \begin{itemize}
+        \item Écrire un algorithme glouton
+        \item Montrer qu'un algorithme est une $\alpha$-approximation d'un problème
+    \end{itemize}
+    \medskip
+
+    Comment s'entraîner :
+    \begin{itemize}
+        \item Refaire le TD 4 (exercice 1)
+    \end{itemize}
+\end{frame}
