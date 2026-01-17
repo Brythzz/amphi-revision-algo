@@ -496,13 +496,6 @@
     \end{columns}
 \end{frame}
 
-% Arbre couvrant minimal (def)
-\begin{frame}{Arbre couvrant minimal}
-    \begin{block}{Arbre couvrant minimal (MST)}
-        Soit un graphe non-orienté, connexe $G=(V,E)$. Un arbre couvrant minimal de $G$ (Minimal Spanning Tree) est un sous-graphe de $G$ contenant tous les sommets de $G$ et tel que la somme des poids de ses arêtes est minimal.
-    \end{block}
-\end{frame}
-
 % Arbre couvrant minimal
 \begin{frame}{Arbre couvrant minimal}
     \begin{block}{Arbre couvrant minimal (MST)}
@@ -510,7 +503,7 @@
     \end{block}
 
     \begin{block}{Kruskal}
-        L'algorithme de Kruskal permet de trouver un arbre couvrant minimal dans un graphe connexe.
+        L'algorithme de Kruskal est un algorithme glouton qui permet de trouver un arbre couvrant minimal dans un graphe connexe.
         \medskip
 
         Complexité : $O(|E|log|V|)$ avec une structure Unir-Trouver
@@ -603,5 +596,12 @@
         \item Écrire des algorithmes impliquant BFS/DFS
         \item Faire tourner Dijkstra à la main sur un exemple
         \item Faire tourner Kruskal à la main sur un exemple pour trouver un MST
+    \end{itemize}
+    \medskip
+
+    Comment s'entraîner :
+    \begin{itemize}
+        \item Refaire les TDs de pré-requis
+        \item Faire tourner les algorithmes Dijkstra/Kruskal sur des exemples
     \end{itemize}
 \end{frame}

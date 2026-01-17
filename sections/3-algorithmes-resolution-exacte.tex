@@ -1,3 +1,47 @@
-\begin{frame}{Simulations blabla}
-    Blabla lorem
+\begin{frame}{Backtracking}
+
+\end{frame}
+
+% Slide sur le bruteforce (exemple avec une complexité de fou)
+% Slide démo du backtracking
+% Slide dans quels cas est-ce qu'on veut utiliser le backtracking
+% Slide sur ce qu'apporte le branch and bound avec un mini exemple
+
+
+
+\begin{frame}{Ce qui est nouveau dans ce chapitre}
+    \begin{block}{\newtext{La programmation linéaire en nombres entiers}}
+        Optimisation (maximisation/minimisation) d'une grandeur à coefficients entiers.
+    \end{block}
+
+    \begin{exampleblock}{Exemple de problème}
+        Maximiser $Z=100x_1 + 150x_2$ sous les contraintes :
+        \begin{itemize}
+            \item $8000x_1 + 4000x_2 \leq 40000$
+            \item $15x_1 + 30x_2 \leq 200$
+            \item $x_1, x_2 \in \mathbb{N}$
+        \end{itemize}
+    \end{exampleblock}
+
+    \textbf{Ce qu'il faut retenir} : on peut utiliser le branch and bound pour trouver la solution optimale dans ce genre de problèmes.
+    \medskip
+
+    La dernière question de l'exercice 2 du TD 3 traite de ce sujet.
+\end{frame}
+
+% Points importants pour l'examen
+\begin{frame}{Conclusion de la section 3}
+    Choses à savoir faire pour l'examen :
+    \begin{itemize}
+        \item Expliquer dans quels cas de figure on utilise le backtracking/branch and bound
+        \item Écrire un algorithme de backtracking
+        \item Donner la complexité des algorithmes
+        % Je remets un point à part sur la complexité parce que c'est un peu plus complexe dans le cas des algos récursifs comme ici
+    \end{itemize}
+    \medskip
+
+    Comment s'entraîner :
+    \begin{itemize}
+        \item Refaire le TD 3 (exercice 2, en entier)
+    \end{itemize}
 \end{frame}
