@@ -350,7 +350,7 @@
 
 % Dijkstra (pseudo-code)
 \begin{frame}{Algorithme de Dijkstra}
-    \textbf{Entrées} : Un graphe $G=(E,V,w)$, un sommet de départ $s$
+    \textbf{Entrées} : Un graphe $G=(V,E,w)$, un sommet de départ $s$
     \medskip
 
     \textbf{Algorithme} :
@@ -514,14 +514,14 @@
 
 % Kruskal (pseudo-code)
 \begin{frame}{Algorithme de Kruskal}
-        \textbf{Entrées} : Un graphe connexe pondéré $G=(E,V,w)$\\
+        \textbf{Entrées} : Un graphe connexe pondéré $G=(V,E,w)$\\
         \textbf{Sortie} : Un ensemble $T\subseteq E$ décrivant un MST
     \medskip
 
     \textbf{Algorithme} :
     \begin{algorithmic}
         \State $T \gets \emptyset$
-        \State $P \gets \textbf{Init}(|S|)$ \Comment{Structure de données Unir-Trouver}
+        \State $P \gets \textbf{Init}(|V|)$ \Comment{Structure de données Unir-Trouver}
         \State Trier les arêtes de $E$ par poids croissant
         \smallskip
 
