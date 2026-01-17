@@ -1,0 +1,44 @@
+% Supprimer des warnings
+\hbadness=10000
+\hfuzz=\maxdimen
+\vfuzz=\maxdimen
+
+% Configuration des listings de code et pseudo-code
+
+\usepackage{listingsutf8, algpseudocode}
+
+\algrenewcommand\algorithmicwhile{\textbf{tant que}}
+\algrenewcommand\algorithmicdo{\textbf{faire}}
+\algrenewcommand\algorithmicend{\textbf{fin}}
+\algrenewcommand\algorithmicif{\textbf{si}}
+\algrenewcommand\algorithmicthen{\textbf{alors}}
+\algrenewcommand\algorithmicelse{\textbf{sinon}}
+\algrenewcommand\algorithmicfor{\textbf{pour}}
+\algrenewcommand\algorithmicforall{\textbf{pour tout}}
+\algrenewcommand\algorithmicrepeat{\textbf{répéter}}
+\algrenewcommand\algorithmicuntil{\textbf{jusqu'à que}}
+\algrenewcommand\algorithmicreturn{\textbf{retourner}}
+
+\algnotext{EndFor}
+\algnotext{EndIf}
+\algnotext{EndWhile}
+\algnotext{EndProcedure}
+
+\renewcommand{\algorithmiccomment}[1]{%
+  \hfill \textcolor{gray}{\small $\triangleright$ #1}%
+}
+
+% Styles Tikz pour les graphes
+\tikzstyle{node_base}=[circle,thick,inner sep=0pt,minimum size=6mm,draw=blue!60,fill=blue!25]
+\tikzstyle{node_selected}=[circle,thick,inner sep=0pt,minimum size=6mm,draw=red!50,fill=red!20]
+\tikzstyle{node_visited}=[circle,thick,inner sep=0pt,minimum size=6mm,node distance=20mm,draw=black!50,fill=black!20]
+\tikzstyle{directed_edge}=[->,>=stealth,semithick]
+\tikzstyle{edge_selected}=[-,style=nearly transparent,line width=6pt]
+\tikzstyle{small_node}=[circle,inner sep=1pt,minimum size=4mm,draw=blue!60,fill=blue!25]
+
+% Coloration des cellules dans la démo de Dijkstra
+\usepackage[table]{xcolor}
+
+% Style de texte pour les nouveautés
+\newcommand{\staricon}{\includegraphics[height=1.7ex]{images/sparkles}\space}
+\newcommand{\newtext}[1]{\staricon #1 \staricon}

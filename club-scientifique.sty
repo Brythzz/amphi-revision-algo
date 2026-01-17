@@ -1,0 +1,143 @@
+\mode<presentation>
+
+\RequirePackage{tikz, xcolor, hyperref}
+
+\definecolor{orangeCS}{RGB}{255, 109, 9} % Orange Club Scientifique
+\definecolor{bleuCS}{RGB}{32, 32, 70} % Bleu Club Scientifique
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+\ProcessOptionsBeamer
+\setbeamertemplate{blocks}[default]
+
+% Disable navigation symbols
+\beamertemplatenavigationsymbolsempty
+
+% Link colors
+\hypersetup{colorlinks=false}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titlepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{title page}[default][rounded=true, shadow=false]
+\addtobeamertemplate{date}{\vspace{-1.5em}}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Footer (author, short title, date & page number)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\beamertemplatenavigationsymbolsempty
+\makeatletter
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertauthor\expandafter
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.40\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+   \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+\addtobeamertemplate{footline}{%
+  \color{orangeCS}% to color the progressbar
+  \hspace*{-\beamer@leftmargin}{1pt}%
+  \rule{\beamer@leftmargin}{2pt}%
+  %\rlap{\rule{\dimexpr\beamer@startpageofframe\dimexpr\beamer@rightmargin+\textwidth\relax/\beamer@endpageofdocument}{2pt}}
+  \rlap{\rule{\dimexpr(\textwidth/\beamer@endpageofdocument)*\beamer@startpageofframe\relax}{2pt}}
+  % next 'empty' line is mandatory!
+
+  \vspace{0\baselineskip}
+  {}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bullet lists symbols and text size
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\useinnertheme{circles}
+
+\setbeamertemplate{itemize subitem}{
+	\stackengine{0pt}{\color{bleuCS}$\bullet$}{\color{white}$\boldsymbol{\cdot}$}{O}{c}{F}{F}{L}
+}
+
+\setbeamerfont{itemize/enumerate subbody}{shape=\itshape,size=\normalsize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Defining colors and text styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamercolor{footline}{bg=bleuCS, fg=white}
+\setbeamercolor{frametitle}{bg=bleuCS,fg=white}
+\setbeamercolor{title}{bg=bleuCS}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]
+
+
+\setbeamercolor{palette}{fg=white,bg=bleuCS}
+\setbeamercolor{palette primary}{fg=white,bg=bleuCS}
+\setbeamercolor{palette secondary}{fg=white,bg=bleuCS}
+\setbeamercolor{palette tertiary}{fg=white,bg=bleuCS}
+\setbeamercolor{palette quaternary}{fg=white,bg=bleuCS}
+\setbeamercolor{titlelike}{parent=palette primary}
+
+\setbeamercolor{author in head/foot}{bg=bleuCS}
+\setbeamercolor{title in head/foot}{bg=orangeCS}
+\setbeamercolor{date in head/foot}{bg=bleuCS}
+
+\setbeamercolor{section in toc}{fg=bleuCS}
+
+% Normal block
+\setbeamercolor{block title}{use=structure, bg=bleuCS, fg=white}
+\setbeamercolor{block body}{fg=black,bg=gray!10}
+
+% Alert block
+\setbeamercolor{block title alerted}{fg=white,bg=red!70!black}
+\setbeamercolor{block body alerted}{fg=black,bg=red!10}
+
+% Example block
+\setbeamercolor{block title example}{fg=white,bg=lightgray!60!black}
+\setbeamercolor{block body example}{fg=black,bg=lightgray!10}
+
+\setbeamercolor{fine separation line}{}
+\setbeamercolor{separation line}{}
+\setbeamercolor{item projected}{fg=white}
+
+\setbeamercolor{structure}{fg=bleuCS}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of contents styles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\AtBeginSection[]{
+	\begin{frame}
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+	\end{frame}
+}
+
+\AtBeginSubsection[]{
+	\begin{frame}
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+	\end{frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Remove autobreaks title numbers
+% \setbeamertemplate{frametitle continuation}{}
+
+\mode
+<all>

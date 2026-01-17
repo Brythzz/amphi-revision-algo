@@ -1,0 +1,607 @@
+% Graphe non-orienté
+\begin{frame}{Définitions}
+    \begin{block}{Définition - Graphe non-orienté}
+        On note $G=(V,E)$ où :
+        \begin{itemize}
+            \item $V$ est un ensemble de n\oe{}uds ;
+            \item $E$ est un ensemble d'arêtes ;
+            \item Une arête $e=(u,v)$ est une paire d'éléments de $V$.
+        \end{itemize}
+    \end{block}
+    \medskip
+    \vspace{2.15em}
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.7]
+            \node[small_node] (1) at (0,0) {\footnotesize{1}};
+            \node[small_node] (4) at (-.7,-2) {\footnotesize{4}};
+            \node[small_node] (3) at (1,-2) {\footnotesize{3}};
+            \node[small_node] (8) at (2,-1) {\footnotesize{8}};
+            \node[small_node] (2) at (3.5,0) {\footnotesize{2}};
+            \node[small_node] (7) at (3.5,-1.5) {\footnotesize{7}};
+            \node[small_node] (9) at (2.3,-3) {\footnotesize{9}};
+
+            \draw[semithick] (1) to (2);
+            \draw[semithick] (1) to (4);
+            \draw[semithick] (1) to (3);
+            \draw[semithick] (3) to (4);
+            \draw[semithick] (3) to (9);
+            \draw[semithick] (3) to (8);
+            \draw[semithick] (8) to (7);
+            \draw[semithick] (2) to node[auto]{\phantom{\footnotesize 2}} (7);
+            \draw[semithick] (9) to (7);
+        \end{tikzpicture}
+    \end{center}
+
+\end{frame}
+
+% Graphe orienté
+\begin{frame}{Définitions}
+    \begin{block}{Définition - Graphe orienté}
+        On note $G=(V,E)$ où :
+        \begin{itemize}
+            \item $V$ est un ensemble de n\oe{}uds ;
+            \item $E$ est un ensemble d'arcs ;
+            \item Une arête $e=(u,v)$ est un couple d'éléments de $V$.
+        \end{itemize}
+    \end{block}
+    \medskip
+    \vspace{2.15em}
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.7]
+            \node[small_node] (1) at (0,0) {\footnotesize{1}};
+            \node[small_node] (4) at (-.7,-2) {\footnotesize{4}};
+            \node[small_node] (3) at (1,-2) {\footnotesize{3}};
+            \node[small_node] (8) at (2,-1) {\footnotesize{8}};
+            \node[small_node] (2) at (3.5,0) {\footnotesize{2}};
+            \node[small_node] (7) at (3.5,-1.5) {\footnotesize{7}};
+            \node[small_node] (9) at (2.3,-3) {\footnotesize{9}};
+
+            \draw[directed_edge] (1) to (2);
+            \draw[directed_edge] (1) to (4);
+            \draw[directed_edge] (1) to (3);
+            \draw[directed_edge] (3) to (4);
+            \draw[directed_edge] (3) to (9);
+            \draw[directed_edge] (3) to (8);
+            \draw[directed_edge] (8) to (7);
+            \draw[directed_edge] (2) to node[auto]{\phantom{\footnotesize 2}} (7);
+            \draw[directed_edge] (9) to (7);
+        \end{tikzpicture}
+    \end{center}
+
+\end{frame}
+
+% Graphe pondéré
+\begin{frame}{Définitions}
+    \begin{block}{Définition - Graphe pondéré}
+        On note $G=(V,E,w)$ où :
+        \begin{itemize}
+            \item $V$ est un ensemble de n\oe{}uds ;
+            \item $E$ est un ensemble d'arêtes ;
+            \item Une arête $e=(u,v)$ est une paire d'éléments de $V$.
+            \item $w: E \rightarrow \mathbb{R}$ est une fonction de pondération
+        \end{itemize}
+    \end{block}
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.7]
+            \node[small_node] (1) at (0,0) {\footnotesize{1}};
+            \node[small_node] (4) at (-.7,-2) {\footnotesize{4}};
+            \node[small_node] (3) at (1,-2) {\footnotesize{3}};
+            \node[small_node] (8) at (2,-1) {\footnotesize{8}};
+            \node[small_node] (2) at (3.5,0) {\footnotesize{2}};
+            \node[small_node] (7) at (3.5,-1.5) {\footnotesize{7}};
+            \node[small_node] (9) at (2.3,-3) {\footnotesize{9}};
+
+            \draw[semithick] (1) to node[auto]{\footnotesize 3} (2);
+            \draw[semithick] (1) to node[auto]{\footnotesize 1} (4);
+            \draw[semithick] (1) to node[auto]{\footnotesize 2} (3);
+            \draw[semithick] (3) to node[auto]{\footnotesize 4} (4);
+            \draw[semithick] (3) to node[auto]{\footnotesize 1} (9);
+            \draw[semithick] (3) to node[auto]{\footnotesize 3} (8);
+            \draw[semithick] (8) to node[auto]{\footnotesize 1} (7);
+            \draw[semithick] (2) to node[auto]{\footnotesize 2} (7);
+            \draw[semithick] (9) to node[auto]{\footnotesize 3} (7);
+	    \end{tikzpicture}
+	\end{center}
+\end{frame}
+
+% Graphe pondéré orienté
+\begin{frame}{Définitions}
+    \begin{block}{Définition - Graphe orienté pondéré}
+        On note $G=(V,E,w)$ où :
+        \begin{itemize}
+            \item $V$ est un ensemble de n\oe{}uds ;
+            \item $E$ est un ensemble d'arêtes ;
+            \item Une arête $e=(u,v)$ est une paire d'éléments de $V$.
+            \item $w: E \rightarrow \mathbb{R}$ est une fonction de pondération
+        \end{itemize}
+    \end{block}
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}[scale=0.7]
+            \node[small_node] (1) at (0,0) {\footnotesize{1}};
+            \node[small_node] (4) at (-.7,-2) {\footnotesize{4}};
+            \node[small_node] (3) at (1,-2) {\footnotesize{3}};
+            \node[small_node] (8) at (2,-1) {\footnotesize{8}};
+            \node[small_node] (2) at (3.5,0) {\footnotesize{2}};
+            \node[small_node] (7) at (3.5,-1.5) {\footnotesize{7}};
+            \node[small_node] (9) at (2.3,-3) {\footnotesize{9}};
+
+            \draw[directed_edge] (1) to node[auto]{\footnotesize 3} (2);
+            \draw[directed_edge] (1) to node[auto]{\footnotesize 1} (4);
+            \draw[directed_edge] (1) to node[auto]{\footnotesize 2} (3);
+            \draw[directed_edge] (3) to node[auto]{\footnotesize 4} (4);
+            \draw[directed_edge] (3) to node[auto]{\footnotesize 1} (9);
+            \draw[directed_edge] (3) to node[auto]{\footnotesize 3} (8);
+            \draw[directed_edge] (8) to node[auto]{\footnotesize 1} (7);
+            \draw[directed_edge] (2) to node[auto]{\footnotesize 2} (7);
+            \draw[directed_edge] (9) to node[auto]{\footnotesize 3} (7);
+        \end{tikzpicture}
+	\end{center}
+\end{frame}
+
+% Graphe biparti
+\begin{frame}{Graphes particuliers}
+    \begin{block}{Graphe biparti}
+        Graphe dont l'ensemble des sommets $V$ peut être partitionné en deux ensembles $V_1$ et $V_2$ tels que chaque arête a une extrémité dans $V_1$ et l'autre dans $V_2$.
+    \end{block}
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[small_node] (1) at (0,3) {\footnotesize{$v_{1,1}$}};
+            \node[small_node] (2) at (0,2) {\footnotesize{$v_{1,2}$}};
+            \node[small_node] (3) at (0,1) {\footnotesize{$v_{1,3}$}};
+            \node[small_node] (4) at (0,0) {\footnotesize{$v_{1,4}$}};
+
+            \node[small_node] (5) at (2,2.5) {\footnotesize{$v_{2,1}$}};
+            \node[small_node] (6) at (2,1.5) {\footnotesize{$v_{2,2}$}};
+            \node[small_node] (7) at (2,.5) {\footnotesize{$v_{2,3}$}};
+
+            \draw[directed_edge] (1) to (5);
+            \draw[directed_edge] (1) to (6);
+            \draw[directed_edge] (2) to (6);
+            \draw[directed_edge] (4) to (5);
+            \draw[directed_edge] (4) to (7);
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+% Arbre
+\begin{frame}{Graphes particuliers}
+    \begin{block}{Arbre}
+        Graphe acyclique et connexe (il existe un chemin entre toute paire de sommets).
+    \end{block}
+    \medskip
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[small_node] (1) at (0,2) {\footnotesize{1}};
+            \node[small_node] (2) at (-1,1) {\footnotesize{2}};
+            \node[small_node] (3) at (1,1) {\footnotesize{3}};
+            \node[small_node] (4) at (-2,0) {\footnotesize{4}};
+            \node[small_node] (5) at (0,0) {\footnotesize{5}};
+
+            \draw[semithick] (1) to (2);
+            \draw[semithick] (1) to (3);
+            \draw[semithick] (2) to (4);
+            \draw[semithick] (2) to (5);
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+% DFS (principe)
+\begin{frame}{Parcours en profondeur}
+    \begin{block}{Idée de l'algorithme}
+        Lorsqu'on visite un n\oe{}ud, on le marque comme visité, puis on visite immédiatement le premier de ses voisins qui n'a pas encore été vu, et ainsi de suite.
+        \smallskip
+
+        Complexité : $O(|V| + |E|)$ avec une liste d'adjacence
+    \end{block}
+    On peut soit utiliser une structure de pile (dernier arrivé, premier sorti), soit écrire une fonction récursive.
+\end{frame}
+
+% DFS (code)
+\begin{frame}[fragile]{Parcours en profondeur}
+    Pour un graphe sous forme de listes d'adjacence :
+    \bigskip
+
+    \lstinputlisting[language=Python]{scripts/dfs.py}
+\end{frame}
+
+% DFS (exemple)
+\begin{frame}{Parcours en profondeur}
+    \begin{center}
+        \begin{tikzpicture}[scale=1.5]
+            \only<1>{\node[node_base] (1) at (1.5,1) {1};}
+            \only<2->{\node[node_visited] (1) at (1.5,1) {1};}
+
+            \node[node_base] (2) at (0,0) {2};
+
+            \only<-2>{\node[node_base] (3) at (2.5,0) {3};}
+            \only<3->{\node[node_visited] (3) at (2.5,0) {3};}
+
+            \only<-3>{\node[node_base] (9) at (1.5,-1) {9};}
+            \only<4->{\node[node_visited] (9) at (1.5,-1) {9};}
+
+            \only<-4>{\node[node_base] (7) at (4,0) {7};}
+            \only<5->{\node[node_visited] (7) at (4,0) {7};}
+
+            \only<-5>{\node[node_base] (8) at (4.5,1) {8};}
+            \only<6->{\node[node_visited] (8) at (4.5,1) {8};}
+
+            \only<-6>{\node[node_base] (5) at (3.5,2) {5};}
+            \only<7->{\node[node_visited] (5) at (3.5,2) {5};}
+
+            \only<-7>{\node[node_base] (4) at (3.5,1) {4};}
+            \only<8->{\node[node_visited] (4) at (3.5,1) {4};}
+
+            \only<-8>{\node[node_base] (6) at (4.5,2) {6};}
+            \only<9->{\node[node_visited] (6) at (4.5,2) {6};}
+
+            \draw[directed_edge] (1) -- (3);
+            \draw[directed_edge] (1) -- (5);
+            \draw[directed_edge] (2) -- (1);
+            \draw[directed_edge] (3) -- (7);
+            \draw[directed_edge] (3) -- (9);
+            \draw[directed_edge] (4) -- (3);
+            \draw[directed_edge] (4) -- (6);
+            \draw[directed_edge] (5) -- (4);
+            \draw[directed_edge] (7) -- (8);
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+% BFS (principe)
+\begin{frame}{Parcours en largeur}
+    \begin{block}{Principe de l'algorithme}
+        Lorsqu'on visite un n\oe{}ud, on le marque comme visité, puis on visite successivement l'ensemble de ses voisins avant de passer à la suite.
+        \smallskip
+
+        Complexité : $O(|V| + |E|)$ avec une liste d'adjacence
+    \end{block}
+    On écrit une fonction itérative en utilisant une structure de file (premier arrivé, premier sorti).
+\end{frame}
+
+% BFS (code)
+\begin{frame}[fragile]{Parcours en largeur}
+    Pour un graphe sous forme de listes d'adjacence :
+    \bigskip
+
+    \lstinputlisting[language=Python]{scripts/bfs.py}
+\end{frame}
+
+% BFS (exemple)
+\begin{frame}{Parcours en largeur}
+    \begin{center}
+        \begin{tikzpicture}[scale=1.5]
+            \only<1>{\node[node_base] (1) at (1.5,1) {1};}
+            \only<2->{\node[node_visited] (1) at (1.5,1) {1};}
+
+            \node[node_base] (2) at (0,0) {2};
+
+            \only<-2>{\node[node_base] (3) at (2.5,0) {3};}
+            \only<3->{\node[node_visited] (3) at (2.5,0) {3};}
+
+            \only<-3>{\node[node_base] (5) at (3.5,2) {5};}
+            \only<4->{\node[node_visited] (5) at (3.5,2) {5};}
+
+            \only<-4>{\node[node_base] (9) at (1.5,-1) {9};}
+            \only<5->{\node[node_visited] (9) at (1.5,-1) {9};}
+
+            \only<-5>{\node[node_base] (7) at (4,0) {7};}
+            \only<6->{\node[node_visited] (7) at (4,0) {7};}
+
+            \only<-6>{\node[node_base] (4) at (3.5,1) {4};}
+            \only<7->{\node[node_visited] (4) at (3.5,1) {4};}
+
+            \only<-7>{\node[node_base] (6) at (4.5,2) {6};}
+            \only<8->{\node[node_visited] (6) at (4.5,2) {6};}
+
+            \only<-8>{\node[node_base] (8) at (4.5,1) {8};}
+            \only<9->{\node[node_visited] (8) at (4.5,1) {8};}
+
+            \draw[directed_edge] (1) -- (3);
+            \draw[directed_edge] (1) -- (5);
+            \draw[directed_edge] (2) -- (1);
+            \draw[directed_edge] (3) -- (7);
+            \draw[directed_edge] (3) -- (9);
+            \draw[directed_edge] (4) -- (3);
+            \draw[directed_edge] (4) -- (6);
+            \draw[directed_edge] (5) -- (4);
+            \draw[directed_edge] (7) -- (8);
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+% Plus courts chemins
+\begin{frame}{Plus courts chemins}
+    \begin{block}{Optimalité de BFS}
+        Pour des graphes \textbf{non-pondérés}, le parcours en largeur nous donne le plus court chemin entre le n\oe{}ud de départ et tous les autres n\oe{}uds du graphe.
+    \end{block}
+
+    Mais comment trouver le plus court chemin entre deux n\oe{}uds dans un graphe pondéré ?
+\end{frame}
+
+% Dijkstra (utilité)
+\begin{frame}{Algorithme de Dijkstra}
+    \begin{block}{Optimalité de Dijkstra}
+        Pour des graphes \textbf{pondérés} à poids \textbf{positifs}, l'algorithme de Dijkstra nous donne le plus court chemin entre le n\oe{}ud de départ et tous les autres n\oe{}uds du graphe.
+    \end{block}
+
+    \begin{alertblock}{Attention !}
+        Si le graphe contient des arêtes de poids strictement négatif, l'algorithme de Dijkstra peut retourner un chemin non-optimal.
+    \end{alertblock}
+\end{frame}
+
+% Dijkstra (principe)
+\begin{frame}{Algorithme de Dijkstra}
+    \begin{block}{Principe de l'algorithme}
+        On fait un parcours en largeur en visitant les voisins dans un ordre qui dépend du poids des arêtes. En pratique, on remplace la file classique par une file de priorité (tas min ou tas de Fibonacci).
+        \smallskip
+
+        Complexité : $O(|E|log(|V|))$ avec un tas binaire
+    \end{block}
+\end{frame}
+
+% Dijkstra (pseudo-code)
+\begin{frame}{Algorithme de Dijkstra}
+    \textbf{Entrées} : Un graphe $G=(E,V,w)$, un sommet de départ $s$
+    \medskip
+
+    \textbf{Algorithme} :
+    \begin{algorithmic}
+        \State $distance[u] \gets +\infty$ pour tout sommet $u \in V$
+        \State $distance[s] \gets 0$
+        \State $parent[u] \gets u$ pour tout $u \in V$
+        \State $F \gets$ File de priorité vide \Comment{Frontière}
+        \State \textbf{Enfiler}(F, $(0, s)$)
+
+        \State
+        \While{non EstVide($F$)}
+            \State $u \gets$ Defiler($F$) \Comment{Sommet avec $distance[u]$ minimum}
+
+            \For{chaque voisin $v$ de $u$}
+                \If{$distance[u] + w(u, v) < distance[v]$}
+                    \State $distance[v] \gets distance[u] + w(u, v)$
+                    \State $parent[v] \gets u$
+                    \State \textbf{Mise à jour} de $v$ dans $F$ avec la priorité $distance[v]$
+                \EndIf
+            \EndFor
+        \EndWhile
+
+        \State \Return $(distance, parent)$
+    \end{algorithmic}
+\end{frame}
+
+% Dijkstra (exemple)
+\begin{frame}{Algorithme de Dijkstra}
+    \begin{columns}
+    \begin{column}{6cm}
+        \begin{tikzpicture}[scale=.7]
+            \node[node_base] (D) at (0,0) {D};
+            \node[node_base] (A) at (2,2) {A};
+            \node[node_base] (B) at (5,2) {B};
+            \node[node_base] (E) at (2,-2) {E};
+            \node[node_base] (F) at (5,-2) {F};
+            \node[node_base] (C) at (7,0) {C};
+            \draw[directed_edge] (D) to node[auto]{\footnotesize 3} (A);
+            \draw[directed_edge] (D) to node[below]{\footnotesize 1} (E);
+            \draw[directed_edge] (E) to[bend right] node[auto]{\footnotesize 1} (A);
+            \draw[directed_edge] (A) to[bend right] node[auto]{\footnotesize 5} (E);
+            \draw[directed_edge] (A) to node[auto]{\footnotesize 3} (B);
+            \draw[directed_edge] (E) to node[auto]{\footnotesize 2} (B);
+            \draw[directed_edge] (B) to node[auto]{\footnotesize 1} (F);
+            \draw[directed_edge] (E) to node[auto]{\footnotesize 4} (F);
+            \draw[directed_edge] (B) to node[auto]{\footnotesize 3} (C);
+            \draw[directed_edge] (F) to node[auto]{\footnotesize 1} (C);
+            %exploration à partir de D
+            \only<2-3>{		\node[node_selected] (D) at (0,0) {D};}
+            \only<3-4>{		\node[node_visited] (A) at (2,2) {A};
+                            \node[node_visited] (E) at (2,-2) {E};
+            }
+            \only<3-6>{		\draw[edge_selected] (D) to (A);}
+            \only<3->{		\draw[edge_selected] (D) to (E);}
+            % exploration à partir de E
+            \only<5-6>{		\node[node_selected] (E) at (2,-2) {E};}
+            \only<6-7>{		\node[node_visited] (A) at (2,2) {A};
+                            \node[node_visited] (B) at (5,2) {B};
+                            \node[node_visited] (F) at (5,-2) {F};
+            }
+            \only<6->{		\draw[edge_selected] (E) to[bend right] (A);
+                            \draw[edge_selected] (E) to (B);
+            }
+            \only<6-12>{	\draw[edge_selected] (E) to (F);}
+            % exploration à partir de A
+            \only<8-9>{		\node[node_selected] (A) at (2,2) {A};}
+            \only<9>{		\node[node_visited] (B) at (5,2) {B};
+                            \node[node_visited] (E) at (2,-2) {E};
+                            \draw[edge_selected] (A) to[bend right] (E);
+                            \draw[edge_selected] (A) to (B);
+            }
+            % exploration à partir de B
+            \only<11-12>{	\node[node_selected] (B) at (5,2) {B};}
+            \only<12-13>{	\node[node_visited] (C) at (7,0) {C};
+                            \node[node_visited] (F) at (5,-2) {F};
+            }
+            \only<12-15>{	\draw[edge_selected] (B) to (C);}
+            \only<12->{	\draw[edge_selected] (B) to (F);}
+            % exploration à partir de F
+            \only<14-15>{	\node[node_selected] (F) at (5,-2) {F};}
+            \only<15-16>{	\node[node_visited] (C) at (7,0) {C};}
+            \only<15->{	\draw[edge_selected] (F) to (C);}
+            % exploration à partir de C
+            \only<17>{	\node[node_selected] (C) at (7,0) {C};}
+        \end{tikzpicture}
+    \end{column}
+    \begin{column}{4cm}
+        {\footnotesize
+            \begin{tabular}{|c|c|c|}
+            \hline N\oe{}ud & Distance & Parent\\
+        % A change en 4 et 7, pointeur en 8
+            \hline \only<4,7>{\cellcolor{gray!25}}\only<8>{\cellcolor{red!25}}A
+                & \only<4,7>{\cellcolor{gray!25}}\only<1-3>{\phantom{$\infty$}}\only<4-6>{3}\only<7>{1+1}\only<8->{2}
+                & \only<4,7>{\cellcolor{gray!25}}\only<1-3>{\phantom{$\bullet$}}\only<4-6>{D}\only<7->{E}\\
+        % B change en 7, pointeur en 11
+            \hline \only<7>{\cellcolor{gray!25}}\only<11>{\cellcolor{red!25}}B
+                & \only<7>{\cellcolor{gray!25}}\only<1-6>{\phantom{$\infty$}}\only<7>{1+2}\only<8->{3}
+                & \only<7>{\cellcolor{gray!25}}\only<1-6>{\phantom{$\bullet$}}\only<7->{E}\\
+        % C change en 13 et 16, pointeur en 17
+            \hline \only<13,16>{\cellcolor{gray!25}}\only<17>{\cellcolor{red!25}}C
+                & \only<13,16>{\cellcolor{gray!25}}\only<1-12>{\phantom{$\infty$}}\only<13>{3+3}\only<14-15>{6}\only<16>{4+1}\only<17->{5}
+                & \only<13,16>{\cellcolor{gray!25}}\only<1-12>{\phantom{$\bullet$}}\only<13-15>{B}\only<16->{F}\\
+        % D pointeur en 2
+            \hline \only<2>{\cellcolor{red!25}}D
+                & $0$
+                & $\bullet$\\
+        % E change en 4, pointeur en 5
+            \hline \only<4>{\cellcolor{gray!25}}\only<5>{\cellcolor{red!25}}E
+                & \only<4>{\cellcolor{gray!25}}\only<1-3>{\phantom{$\infty$}}\only<4->{1}
+                & \only<4>{\cellcolor{gray!25}}\only<1-3>{\phantom{$\bullet$}}\only<4->{D}\\
+        % F change en 7 et 13, pointeur en 14
+            \hline \only<7,13>{\cellcolor{gray!25}}\only<14>{\cellcolor{red!25}}F
+                & \only<7,13>{\cellcolor{gray!25}}\only<1-6>{\phantom{$\infty$}}\only<7>{1+4}\only<8-12>{5}\only<13>{3+1}\only<14->{4}
+                & \only<7,13>{\cellcolor{gray!25}}\only<1-6>{\phantom{$\bullet$}}\only<7-12>{E}\only<13->{B}\\
+            \hline
+            \end{tabular}
+
+            \bigskip
+            \begin{tabular}{p{1.8cm}p{2cm}}
+            Frontière = &
+                \only<1>{$\{D\}$}
+                \only<2>{$\{\}$}
+                \only<3-4>{$\{A,E\}$}
+                \only<5>{$\{A\}$}
+                \only<6-7>{$\{A,B,F\}$}
+                \only<8-10>{$\{B,F\}$}
+                \only<11>{$\{F\}$}
+                \only<12-13>{$\{C,F\}$}
+                \only<14-16>{$\{C\}$}
+                \only<17->{$\{\}$}
+            \\
+            \hspace{1.06cm}u = &
+                \only<2-4>{$D$}
+                \only<5-7>{$E$}
+                \only<8-10>{$A$}
+                \only<11-13>{$B$}
+                \only<14-16>{$F$}
+                \only<17->{$C$}
+            \end{tabular}
+        }
+    \end{column}
+    \end{columns}
+\end{frame}
+
+% Arbre couvrant minimal (def)
+\begin{frame}{Arbre couvrant minimal}
+    \begin{block}{Arbre couvrant minimal (MST)}
+        Soit un graphe non-orienté, connexe $G=(V,E)$. Un arbre couvrant minimal de $G$ (Minimal Spanning Tree) est un sous-graphe de $G$ contenant tous les sommets de $G$ et tel que la somme des poids de ses arêtes est minimal.
+    \end{block}
+\end{frame}
+
+% Arbre couvrant minimal
+\begin{frame}{Arbre couvrant minimal}
+    \begin{block}{Arbre couvrant minimal (MST)}
+        Soit un graphe non-orienté, connexe $G=(V,E)$. Un arbre couvrant minimal de $G$ (\textit{Minimum Spanning Tree}) est un sous-graphe acyclique de $G$ contenant tous les sommets de $G$ et tel que la somme des poids de ses arêtes est minimal.
+    \end{block}
+
+    \begin{block}{Kruskal}
+        L'algorithme de Kruskal permet de trouver un arbre couvrant minimal dans un graphe connexe.
+        \medskip
+
+        Complexité : $O(|E|log|V|)$ avec une structure Unir-Trouver
+    \end{block}
+
+    L'algorithme de Prim permet également de trouver un MST mais il est un peu plus complexe.
+\end{frame}
+
+% Kruskal (pseudo-code)
+\begin{frame}{Algorithme de Kruskal}
+        \textbf{Entrées} : Un graphe connexe pondéré $G=(E,V,w)$\\
+        \textbf{Sortie} : Un ensemble $T\subseteq E$ décrivant un MST
+    \medskip
+
+    \textbf{Algorithme} :
+    \begin{algorithmic}
+        \State $T \gets \emptyset$
+        \State $P \gets \textbf{Init}(|S|)$ \Comment{Structure de données Unir-Trouver}
+        \State Trier les arêtes de $E$ par poids croissant
+        \smallskip
+
+        \For{$(u,v)\in E$ dans l'ordre}
+            \If{$\textbf{Trouver}(P, u) \neq \textbf{Trouver}(P, v)$}
+                \State Ajouter $(u,v)$ à $T$
+                \State \textbf{Unir}(P, u, v)
+            \EndIf
+        \EndFor
+        \smallskip
+
+        \State\Return $T$
+    \end{algorithmic}
+\end{frame}
+
+% Kruskal (exemple)
+\begin{frame}{Algorithme de Kruskal}
+    \begin{center}
+        \begin{tikzpicture}[scale=2]
+            % Étape 1
+            \only<1>{\node[node_base] (F) at (1,.75) {F};}
+            \only<2->{\node[node_visited] (F) at (1,.75) {F};}
+            \only<1>{\node[node_base] (G) at (2.5,0) {G};}
+            \only<2->{\node[node_visited] (G) at (2.5,0) {G};}
+            \only<2->{\draw[edge_selected] (F) to (G);}
+
+            % Étape 2
+            \only<-2>{\node[node_base] (A) at (-.5,2) {A};}
+            \only<3->{\node[node_visited] (A) at (-.5,2) {A};}
+            \only<-2>{\node[node_base] (E) at (-.5,0) {E};}
+            \only<3->{\node[node_visited] (E) at (-.5,0) {E};}
+            \only<3->{\draw[edge_selected] (A) to (E);}
+
+            % Étape 3
+            \only<-3>{\node[node_base] (B) at (1,2) {B};}
+            \only<4->{\node[node_visited] (B) at (1,2) {B};}
+            \only<4->{\draw[edge_selected] (A) to (B);}
+
+            % Étape 4
+            \only<5->{\draw[edge_selected] (A) to (F);}
+
+            % Étape 5
+            \only<-5>{\node[node_base] (C) at (2.5,1.5) {C};}
+            \only<6->{\node[node_visited] (C) at (2.5,1.5) {C};}
+            \only<6->{\draw[edge_selected] (B) to (C);}
+
+            % Étape 6
+            \only<-6>{\node[node_base] (D) at (3,2.5) {D};}
+            \only<7->{\node[node_visited] (D) at (3,2.5) {D};}
+            \only<7->{\draw[edge_selected] (C) to (D);}
+
+            \draw[semithick] (A) to node[auto]{\footnotesize 3} (B);
+            \draw[semithick] (A) to node[auto]{\footnotesize 2} (E);
+            \draw[semithick] (A) to node[auto]{\footnotesize 3} (F);
+            \draw[semithick] (C) to node[auto]{\footnotesize 7} (B);
+            \draw[semithick] (C) to node[auto]{\footnotesize 9} (D);
+            \draw[semithick] (C) to node[auto]{\footnotesize 8} (G);
+            \draw[semithick] (E) to node[auto]{\footnotesize 3} (G);
+            \draw[semithick] (F) to node[auto]{\footnotesize 5} (B);
+            \draw[semithick] (F) to node[auto]{\footnotesize 4} (E);
+            \draw[semithick] (F) to node[auto]{\footnotesize 1} (G);
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+% Points importants pour l'examen
+\begin{frame}{Conclusion de la section 1}
+    Choses à savoir faire pour l'examen :
+    \begin{itemize}
+        \item Établir la complexité d'un algorithme
+        \item Raisonner sur les propriétés des graphes
+        \item Écrire des algorithmes impliquant BFS/DFS
+        \item Faire tourner Dijkstra à la main sur un exemple
+        \item Faire tourner Kruskal à la main sur un exemple pour trouver un MST
+    \end{itemize}
+\end{frame}
