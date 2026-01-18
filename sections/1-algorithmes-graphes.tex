@@ -216,7 +216,64 @@
 % DFS (exemple)
 \begin{frame}{Parcours en profondeur}
     \begin{center}
-        \begin{tikzpicture}[scale=1.5]
+        \begin{tikzpicture}[scale=1.35]
+            \begin{scope}[xshift=-2cm, yshift=-3cm,
+                box/.style={rectangle, draw, minimum width=.8cm, minimum height=.5cm}
+            ]
+                \only<1,10>{\node at (0.5,2.4) {$\emptyset$};}
+                \node at (0.5,1.8) {\textbf{Pile}};
+
+                \only<1>{}
+
+                \only<2>{
+                \node[box] at (0.5,2.4) {1};
+                }
+
+                \only<3>{
+                \node[box] at (0.5,2.4) {1};
+                \node[box] at (0.5,2.9) {3};
+                }
+
+                \only<4>{
+                \node[box] at (0.5,2.4) {1};
+                \node[box] at (0.5,2.9) {3};
+                \node[box] at (0.5,3.4) {9};
+                }
+
+                \only<5>{
+                \node[box] at (0.5,2.4) {1};
+                \node[box] at (0.5,2.9) {3};
+                \node[box] at (0.5,3.4) {7};
+                }
+
+                \only<6>{
+                \node[box] at (0.5,2.4) {1};
+                \node[box] at (0.5,2.9) {3};
+                \node[box] at (0.5,3.4) {7};
+                \node[box] at (0.5,3.9) {8};
+                }
+
+                \only<7>{
+                \node[box] at (0.5,2.4) {1};
+                \node[box] at (0.5,2.9) {5};
+                }
+
+                \only<8>{
+                \node[box] at (0.5,2.4) {1};
+                \node[box] at (0.5,2.9) {5};
+                \node[box] at (0.5,3.4) {4};
+                }
+
+                \only<9>{
+                \node[box] at (0.5,2.4) {1};
+                \node[box] at (0.5,2.9) {5};
+                \node[box] at (0.5,3.4) {4};
+                \node[box] at (0.5,3.9) {6};
+                }
+
+                \only<10>{}
+            \end{scope}
+
             \only<1>{\node[node_base] (1) at (1.5,1) {1};}
             \only<2->{\node[node_visited] (1) at (1.5,1) {1};}
 
@@ -279,6 +336,57 @@
 \begin{frame}{Parcours en largeur}
     \begin{center}
         \begin{tikzpicture}[scale=1.5]
+            \begin{scope}[yshift=-2.6cm,
+                qbox/.style={rectangle, draw, minimum width=.8cm, minimum height=.5cm}
+            ]
+                \node at (2.5,0.8) {\textbf{File}};
+                \only<1,11>{
+                    \node at (2.5,0.1) {$\emptyset$};
+                }
+
+                \phantom{\node[qbox] at (-.3,0.1) {1};}
+                \phantom{\node[qbox] at (5.3,0.1) {1};}
+                \phantom{\node at (2.5,0.1) {$\emptyset$};}
+
+                \only<2>{
+                    \node[qbox] at (-.3,0.1) {1};
+                }
+                \only<3>{
+                    \node[qbox] at (.5,0.1) {3};
+                }
+                \only<4>{
+                    \node[qbox] at (.5,0.1) {3};
+                    \node[qbox] at (1.3,0.1) {5};
+                }
+                \only<5>{
+                    \node[qbox] at (1.3,0.1) {5};
+                    \node[qbox] at (2.1,0.1) {9};
+                }
+                \only<6>{
+                    \node[qbox] at (1.3,0.1) {5};
+                    \node[qbox] at (2.1,0.1) {9};
+                    \node[qbox] at (2.9,0.1) {7};
+                }
+                \only<7>{
+                    \node[qbox] at (2.1,0.1) {9};
+                    \node[qbox] at (2.9,0.1) {7};
+                    \node[qbox] at (3.7,0.1) {4};
+                }
+                \only<8>{
+                    \node[qbox] at (2.9,0.1) {7};
+                    \node[qbox] at (3.7,0.1) {4};
+                }
+                \only<9>{
+                    \node[qbox] at (3.7,0.1) {4};
+                    \node[qbox] at (4.5,0.1) {8};
+                }
+                \only<10>{
+                    \node[qbox] at (4.5,0.1) {8};
+                    \node[qbox] at (5.3,0.1) {6};
+                }
+
+            \end{scope}
+
             \only<1>{\node[node_base] (1) at (1.5,1) {1};}
             \only<2->{\node[node_visited] (1) at (1.5,1) {1};}
 
@@ -299,11 +407,11 @@
             \only<-6>{\node[node_base] (4) at (3.5,1) {4};}
             \only<7->{\node[node_visited] (4) at (3.5,1) {4};}
 
-            \only<-7>{\node[node_base] (6) at (4.5,2) {6};}
-            \only<8->{\node[node_visited] (6) at (4.5,2) {6};}
-
             \only<-8>{\node[node_base] (8) at (4.5,1) {8};}
             \only<9->{\node[node_visited] (8) at (4.5,1) {8};}
+
+            \only<-9>{\node[node_base] (6) at (4.5,2) {6};}
+            \only<10->{\node[node_visited] (6) at (4.5,2) {6};}
 
             \draw[directed_edge] (1) -- (3);
             \draw[directed_edge] (1) -- (5);
@@ -314,6 +422,7 @@
             \draw[directed_edge] (4) -- (6);
             \draw[directed_edge] (5) -- (4);
             \draw[directed_edge] (7) -- (8);
+
         \end{tikzpicture}
     \end{center}
 \end{frame}
