@@ -157,12 +157,17 @@
 
 % Méthode pour montrer la NP-complétude
 \begin{frame}{Méthode pour montrer la NP-complétude}
-    Pour montrer qu'un problème est \textbf{NP-complet} :
+    Pour montrer qu'un problème $\mathcal{P}_1$ est \textbf{NP-complet} :
     \bigskip
 
     \begin{enumerate}
         \item On montre que le problème est \textbf{dans NP} en exhibant un algorithme de vérification de complexité polynomiale ;
-        \item On montre que le problème est \textbf{NP-difficile} en réduisant un autre problème NP-difficile à lui ;
+        \item On montre que le problème est \textbf{NP-difficile} en réduisant un autre problème $\mathcal{P}_c$ NP-difficile à lui ;
+        \begin{itemize}
+            \item Trouver une fonction $tr$ pour transformer une entrée de $\mathcal{P}_c$ en entrée de $\mathcal{P}$
+            \item Vérifier que $tr$ est polynomiale
+            \item Prouver l'équivalence $e\in\mathcal{D}^+_c \iff tr(e)\in\mathcal{D}^+_1$
+        \end{itemize}
         \item On conclut en disant que NP \& NP-difficile $\iff$ NP-complet
     \end{enumerate}
 \end{frame}
