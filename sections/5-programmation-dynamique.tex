@@ -1,7 +1,3 @@
-% Utilité, principe + ex. simple
-% Exemple de relation de récurrence -> comment on la construit
-% Bellman-Ford avec démo
-
 \begin{frame}{La programmation dynamique}
     \begin{block}{Principe}
         Stocker le résultat de calculs intermédiaires qui interviennent plusieurs fois dans le résultat pour éviter de les calculer plusieurs fois.
@@ -14,7 +10,7 @@
 \begin{frame}{Exemple : la suite de Fibonacci}
     \begin{exampleblock}{Suite de Fibonacci}
         $F(0) = F(1) = 1$\\
-        $F(n) = F(n-1) + F(n-1)$
+        $F(n) = F(n-1) + F(n-2)$
     \end{exampleblock}
 
     \begin{center}
@@ -119,7 +115,7 @@ def fib(n):
 
 \begin{frame}{Bellman-Ford}
     \begin{block}{Principe de l'algorithme}
-        On stocke $OPT(i,v)$ la longueur du plus court chemin entre le \oe{}ud départ et $v$, avec au plus $i$ arêtes.
+        On stocke $OPT(i,v)$ la longueur du plus court chemin entre le n\oe{}ud départ et $v$, avec au plus $i$ arêtes.
         \medskip
 
         À chaque étape, on regarde s'il est plus court de garder le chemin à $i-1$ arêtes, ou d'utiliser un autre chemin déjà existant vers un voisin de $v$ et d'y ajouter l'arête qui le relie à $v$. ($\star$)
@@ -146,7 +142,7 @@ def fib(n):
             \State
             \For{i allant de $1$ à $|V|-1$}
                 \For{$v \in V$}
-                    \For{$(u,v)\in A$}
+                    \For{$(u,v)\in E$}
                         \If{$d[i,v]>d[i-1,u] + w(u,v)$}
                             \State $d[i,v] = d[i-1,u] + w(u,v)$
                         \EndIf
@@ -305,7 +301,7 @@ def fib(n):
     \end{itemize}
 
     \begin{exampleblock}{Subset Sum}
-        \textbf{Question} : existe-t-il un sous ensemble de $A=[a_1, a_2, ..., a_n]$ de somme $T$ ?
+        \textbf{Question} : existe-t-il un sous-ensemble de $A=[a_1, a_2, ..., a_n]$ de somme $T$ ?
         \medskip
 
         $dp[i][s] =$ True si on peut faire la somme $s$ avec les $i$ premiers éléments

@@ -28,7 +28,7 @@
         \textbf{Entrées} :
         \begin{itemize}
             \item Un graphe $G=(V,E,w)$ pondéré
-            \item Des n\oe{}uds $s,t\in V^2$
+            \item Des n\oe{}uds $s,t\in V$
             \item Un nombre $k\in \mathbb{N}$
         \end{itemize}
 
@@ -199,10 +199,10 @@
 % Problèmes classiques (cours + TD)
 \begin{frame}{Problèmes NP-complets classiques}
     \begin{exampleblock}{Set-Cover}
-        \textbf{Entrées} : un ensemble d'éléments $U$ ; une famille $S \subset \mathcal{P}(U)$ de sous ensembles de $U$; un nombre $k\in \mathbb{N}$
+        \textbf{Entrées} : un ensemble d'éléments $U$ ; une famille $S \subset \mathcal{P}(U)$ de sous-ensembles de $U$; un nombre $k\in \mathbb{N}$
         \smallskip
 
-        \textbf{Question} : existe-il une sous-famille $S' \subseteq S$ telle que :
+        \textbf{Question} : existe-t-il une sous-famille $S' \subseteq S$ telle que :
         \begin{itemize}
             \item $S'$ est une couverture de $U$, càd $U = \cup_{S_i \in S'}S_i$
             \item $card(S') \leq k$
@@ -213,9 +213,9 @@
         \textbf{Entrées} : un graphe $G=(V,E)$ ; $k\in \mathbb{N}$
         \smallskip
 
-        \textbf{Question} : existe-il un ensemble $S \subseteq V$ tel que :
+        \textbf{Question} : existe-t-il un ensemble $S \subseteq V$ tel que :
         \begin{itemize}
-            \item $\forall u,v\in S^2$, $(u,v) \in E$ (le sous graphe induit est complet)
+            \item $\forall u,v\in S^2$, $(u,v) \in E$ (le sous-graphe induit est complet)
             \item $|S| \geq k$
         \end{itemize}
     \end{exampleblock}
