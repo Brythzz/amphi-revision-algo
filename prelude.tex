@@ -21,11 +21,13 @@
 \algrenewcommand\algorithmicrepeat{\textbf{répéter}}
 \algrenewcommand\algorithmicuntil{\textbf{jusqu'à que}}
 \algrenewcommand\algorithmicreturn{\textbf{retourner}}
+\algrenewcommand\algorithmicfunction{\textbf{fonction}}
 
 \algnotext{EndFor}
 \algnotext{EndIf}
 \algnotext{EndWhile}
 \algnotext{EndProcedure}
+\algnotext{EndFunction}
 
 \renewcommand{\algorithmiccomment}[1]{%
   \hfill \textcolor{gray}{\small $\triangleright$ #1}%
@@ -38,6 +40,14 @@
 \tikzstyle{directed_edge}=[->,>=stealth,semithick]
 \tikzstyle{edge_selected}=[-,style=nearly transparent,line width=6pt]
 \tikzstyle{small_node}=[circle,inner sep=1pt,minimum size=4mm,draw=blue!60,fill=blue!25]
+
+\makeatletter
+\tikzset{
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}%
+  }
+}
+\makeatother
 
 % Coloration des cellules dans la démo de Dijkstra
 \usepackage[table]{xcolor}

@@ -1,13 +1,242 @@
+% Idée du backtracking
 \begin{frame}{Backtracking}
-
+    \begin{block}{Backtracking}
+        \textbf{Idée} : explorer un \textit{arbre de recherche} de solutions partielles, en construisant la solution étape par étape.
+        \begin{itemize}
+            \item À chaque étape : on choisit une option parmi plusieurs (branchements)
+            \item Si la solution partielle ne peut plus mener à une solution valide, on revient en arrière (backtrack)
+            \item Sinon, on continue jusqu'à :
+            \begin{itemize}
+                \item obtenir une solution complète valide
+                \item avoir épuisé toutes les options dans la branche : on backtrack et on passe à la branche suivante
+            \end{itemize}
+        \end{itemize}
+    \end{block}
 \end{frame}
 
-% Slide sur le bruteforce (exemple avec une complexité de fou)
-% Slide démo du backtracking
-% Slide dans quels cas est-ce qu'on veut utiliser le backtracking
-% Slide sur ce qu'apporte le branch and bound avec un mini exemple
+% Exemple : problème subset-sum
+\begin{frame}{Exemple de problème}
+    \begin{exampleblock}{Problème Subset-Sum}
+        \textbf{Entrées} :
+        \begin{itemize}
+            \item Une liste de nombres $A=[a_1, a_2, ..., a_n]$ positifs
+            \item Un nombre $T \geq 0$
+        \end{itemize}
+        \smallskip
+
+        \textbf{Question} : existe-t-il un sous-ensemble de $A$ dont la somme des éléments vaut $T$ ?
+    \end{exampleblock}
+    \medskip
+
+    \only<1>{
+    On construit un arbre de solutions :
+    \vspace*{.3cm}
+    \smallskip
+
+    À la profondeur $i$, on a deux branchements :
+    \begin{itemize}
+        \item soit on prend $a_i$
+        \item soit on ne prend pas $a_i$
+    \end{itemize}}
+
+    \only<2>{À chaque étape :
+    \begin{itemize}
+        \item si la somme courante $S > T$, ça ne sert à rien de continuer dans cette branche
+        \item si au bout de la branche, on a encore $S < T$, on revient en arrière
+    \end{itemize}}
+\end{frame}
+
+% Application algorithmique
+\begin{frame}{Algorithme du backtracking}
+    \begin{algorithmic}
+        \Function{SubsetSum}{A, T}
+            \medskip
+
+            \Function{BT}{i, S}
+                \If{$S = T$} \Comment{on a trouvé une solution !}
+                    \State \Return True
+                \EndIf
+                \If{$i = n$} \Comment{on a épuisé tous les nombres de $A$}
+                    \State \Return False
+                \EndIf
+                \If{$S > T$} \Comment{on a dépassé $T$, inutile de continuer}
+                    \State \Return False
+                \EndIf
+                \medskip
+
+                \If{\Call{BT}{i+1, S + A[i]}} \Comment{on prend l'élément $a_i$}
+                    \State \Return True
+                \EndIf
+                \If{\Call{BT}{i+1, S}} \Comment{on ne prend pas l'élément $a_i$}
+                    \State \Return True
+                \EndIf
+                \State \Return False \Comment{pas de solution trouvée dans le sous arbre}
+            \EndFunction
+            \medskip
+
+            \State \Return \Call{BT}{0, 0}
+        \EndFunction
+    \end{algorithmic}
+\end{frame}
+
+% Exemple d'exécution pour subset-sum
+\begin{frame}{Backtracking : exécution (arbre de décision)}
+    \centering
+    \hspace*{-.4cm}
+    \begin{tikzpicture}[
+        font=\scriptsize,
+        node/.style={draw, circle, align=center, inner sep=1.6pt, minimum size=6.3mm},
+        good/.style={node, very thick},
+        bad/.style={node, dashed},
+        edge/.style={-latex, thick},
+        chosen/.style={edge, ultra thick},
+        unseen/.style={opacity=0.25, text opacity=0.25},
+        seen/.style={opacity=1, text opacity=1},
+        edim/.style={opacity=0.25},
+        note/.style={align=left, font=\scriptsize}
+    ]
+    \path[use as bounding box] (-5.7,1.0) rectangle (5.7,-4.2);
+
+    % --- Nodes (x plus serrés) ---
+    \node[node, seen] (r) at (0,0) {$S=0$};
+
+    \node[node, alt=<2-> {seen}{unseen}] (a) at (-2.8,-1.1) {$S=6$};
+    \node[node, alt=<7-> {seen}{unseen}] (b) at ( 2.8,-1.1) {$S=0$};
+
+    \node[node, alt=<3-> {seen}{unseen}] (c) at (-4.2,-2.2) {\scalebox{0.87}{$S=11$}};
+    \node[node, alt=<4-> {seen}{unseen}] (d) at (-1.4,-2.2) {$S=6$};
+
+    \node[node, alt=<8-> {seen}{unseen}] (e) at ( 1.4,-2.2) {$S=5$};
+    \node[node, unseen] (f) at ( 4.2,-2.2) {$S=0$};
+
+    \node[node, unseen] (m) at (-5.0,-3.3) {\scalebox{0.87}{$S=14$}};
+    \node[node, unseen] (n) at (-3.5,-3.3) {\scalebox{0.87}{$S=11$}};
+
+    \node[node, alt=<5-> {seen}{unseen}] (g) at (-2.1,-3.3) {$S=9$};
+    \node[node, alt=<6-> {seen}{unseen}] (h) at (-0.7,-3.3) {$S=6$};
+
+    \node[node, alt=<9-> {seen}{unseen}] (i) at ( 0.7,-3.3) {$S=8$};
+    \node[node, unseen] (j) at ( 2.1,-3.3) {$S=5$};
+
+    \node[node, unseen] (k) at ( 3.5,-3.3) {$S=3$};
+    \node[node, unseen] (l) at ( 4.9,-3.3) {$S=0$};
+
+    % --- Edges (labels plus courts) ---
+    \draw[edge, alt=<2-> {seen}{edim}] (r) -- node[midway, above left]  {\tiny +6} (a);
+    \draw[edge, alt=<7-> {seen}{edim}] (r) -- node[midway, above right] {\tiny +0} (b);
+
+    \draw[edge, alt=<3-> {seen}{edim}] (a) -- node[midway, above left]  {\tiny +5} (c);
+    \draw[edge, alt=<4-> {seen}{edim}] (a) -- node[midway, above right] {\tiny +0} (d);
+
+    \draw[edge, alt=<8-> {seen}{edim}] (b) -- node[midway, above left]  {\tiny +5} (e);
+    \draw[edge, edim] (b) -- node[midway, above right] {\tiny +0} (f);
+
+    \draw[edge, edim] (c) -- node[midway, above left]  {\tiny +3} (m);
+    \draw[edge, edim] (c) -- node[midway, above right] {\tiny +0} (n);
+
+    \draw[edge, alt=<5-> {seen}{edim}] (d) -- node[midway, above left]  {\tiny +3} (g);
+    \draw[edge, alt=<6-> {seen}{edim}] (d) -- node[midway, above right] {\tiny +0} (h);
+
+    \draw[edge, alt=<9-> {seen}{edim}] (e) -- node[midway, above left]  {\tiny +3} (i);
+    \draw[edge, edim] (e) -- node[midway, above right] {\tiny +0} (j);
+
+    \draw[edge, edim] (f) -- node[midway, above left]  {\tiny +3} (k);
+    \draw[edge, edim] (f) -- node[midway, above right] {\tiny +0} (l);
 
 
+    % --- Overlays : DFS ---
+    \only<1>{
+    \node[note] at (0,0.9) {Départ avec $i=0$ et $S=0$};
+    \node[good] at (r.center) {$S=0$};
+    }
+    \only<2>{
+    \node[note] at (0,0.9) {Prendre 6 : $S=6$};
+    \node[good] at (a.center) {$S=6$};
+    \draw[chosen] (r) -- (a);
+    }
+    \only<3>{
+    \node[note] at (0,0.9) {Prendre 5 : $S=11>8$ $\Rightarrow$ on coupe};
+    \node[bad, very thick] at (c.center) {\scalebox{0.87}{$S=11$}};
+    \node[font=\tiny, anchor=west] at ($(c.east)+(0.08,0)$) {\textbf{coupe}};
+    \draw[chosen] (r) -- (a);
+    \draw[chosen] (a) -- (c);
+    }
+    \only<4>{
+    \node[note] at (0,0.9) {Backtrack : ne pas prendre 5, $S=6$};
+    \node[good] at (d.center) {$S=6$};
+    \draw[chosen] (r) -- (a);
+    \draw[chosen] (a) -- (d);
+    }
+    \only<5>{
+    \node[note] at (0,0.9) {Prendre 3 : $S=9>8$ $\Rightarrow$ on coupe};
+    \node[bad, very thick] at (g.center) {$S=9$};
+    \node[font=\tiny, anchor=west] at ($(g.east)+(0.08,0)$) {\textbf{coupe}};
+    \draw[chosen] (r) -- (a);
+    \draw[chosen] (a) -- (d);
+    \draw[chosen] (d) -- (g);
+    }
+    \only<6>{
+    \node[note] at (0,0.9) {Backtrack : ne pas prendre 3. la branche échoue};
+    \node[good] at (h.center) {$S=6$};
+    \draw[chosen] (r) -- (a);
+    \draw[chosen] (a) -- (d);
+    \draw[chosen] (d) -- (h);
+    }
+    \only<7>{
+    \node[note] at (0,0.9) {Retour racine : ne pas prendre 6};
+    \node[good] at (b.center) {$S=0$};
+    \draw[chosen] (r) -- (b);
+    }
+    \only<8>{
+    \node[note] at (0,0.9) {Prendre 5 : $S=5$};
+    \node[good] at (e.center) {$S=5$};
+    \draw[chosen] (r) -- (b);
+    \draw[chosen] (b) -- (e);
+    }
+    \only<9>{
+    \node[note] at (0,0.9) {Prendre 3 : $S=8$ $\Rightarrow$ OK};
+    \node[good, very thick] at (i.center) {$S=8$};
+    \node[font=\tiny, anchor=west] at ($(i.east)-(0.04,0)$) {\textbf{OK}};
+    \draw[chosen] (r) -- (b);
+    \draw[chosen] (b) -- (e);
+    \draw[chosen] (e) -- (i);
+    }
+
+    \node[font=\footnotesize] at (0,-5) {$A=[6,5,3]$, cible $T=8$.\ \ Pruning : si $S>T$, on coupe la branche};
+\end{tikzpicture}
+\end{frame}
+
+% NOTE : À l'oral, dire qu'on a pas exploré tout l'arbre, donc c'est mieux que le brute force ici
+
+% Explication simple de la complexité
+\begin{frame}{Étude de la complexité}
+    \begin{block}{Complexité du backtracking}
+        Le nombre de n\oe{}uds de l'arbre est en ici $O(2^n)$ : $n$ choix (niveaux) avec $2$ options à chaque fois (prendre / ne pas prendre).
+        \medskip
+
+        Les opérations effectuées sur chaque n\oe{}ud (vérification des cas de base, sommes) sont ici en $O(1)$.
+        \medskip
+
+        D'où une complexité totale en $O(2^n)$ (exponentielle).
+    \end{block}
+    \bigskip
+
+    Dans le cas général, si les opérations effectuées sur les n\oe{}uds ne sont pas en $O(1)$, la complexité peut être encore moins bonne.
+\end{frame}
+
+% Définition informelle du Branch & Bound
+\begin{frame}{Le Branch \& Bound}
+    Pour des \textbf{problèmes d'optimisation}, on va chercher à parcourir le moins de branches possibles pour rapidement trouver la solution optimale.
+
+    \begin{block}{Branch \& Bound}
+        On fait un backtracking mais avant d'explorer une branche, on calcule une borne optimiste sur le résultat qu'on peut obtenir (à l'aide d'une heuristique) pour savoir si, en fonction de la meilleure solution actuelle, ça vaut le coup d'explorer la branche.
+    \end{block}
+    \medskip
+
+    Il faut toujours que la borne estimée soit optimiste (e.g surestimation pour un problème de maximisation) pour que Branch \& Bound ne coupe pas une branche contenant la meilleure solution.
+\end{frame}
+
+% NOTE : Préparer un exemple d'heuristique admissible si on me pose une question dessus
 
 \begin{frame}{Ce qui est nouveau dans ce chapitre}
     \begin{block}{\newtext{La programmation linéaire en nombres entiers}}
@@ -35,7 +264,7 @@
     \begin{itemize}
         \item Expliquer dans quels cas de figure on utilise le backtracking/branch and bound
         \item Écrire un algorithme de backtracking
-        \item Donner la complexité des algorithmes
+        \item Justifier une complexité exponentielle (dénombrement)
         % Je remets un point à part sur la complexité parce que c'est un peu plus complexe dans le cas des algos récursifs comme ici
     \end{itemize}
     \medskip
