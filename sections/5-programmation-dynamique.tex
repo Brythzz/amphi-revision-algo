@@ -142,6 +142,7 @@ def fib(n):
             \State
             \For{i allant de $1$ à $|V|-1$}
                 \For{$v \in V$}
+                    \State $d[i,v] = d[i-1,v]$
                     \For{$(u,v)\in E$}
                         \If{$d[i,v]>d[i-1,u] + w(u,v)$}
                             \State $d[i,v] = d[i-1,u] + w(u,v)$
